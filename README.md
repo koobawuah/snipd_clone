@@ -7,9 +7,9 @@ Saw an app on the Flutter showcase website and decided to build it in React Nati
 
 - Open terminal, make sure your current working directory is in the downloaded/cloned folder.
 
-- Install node_modules/ with 'npm install'
+- Install `node_modules/` with `'npm install'`
 
-- Run 'npm start' to start expo local server 
+- Run `'npm start'` to start expo local server 
 
 - Scan QR code or run on Android or iOS simulator on your local machine.
 
