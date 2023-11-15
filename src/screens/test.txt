@@ -1,0 +1,72 @@
+<>
+      
+
+
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 20, }}>
+            <Text style={{flex: 1, fontSize: 32, fontWeight: '900', color: 'white', }}>Podcasts</Text>
+            <MaterialIcons name="dashboard" size={26} color="white" />            
+            <Ionicons name="ios-search" size={26} color="white" style={{marginLeft: 25, }} />
+          </View>
+          <FlatList 
+            data={DummyData}
+            renderItem={ ({item, index}) => (<PodcastTile key={index+item} podcastImg={item.podcastImg} />)}
+            horizontal
+            contentContainerStyle={{paddingHorizontal: 20,}}
+            style={{ marginHorizontal: -20, }}
+            showsHorizontalScrollIndicator={false}
+            />
+
+            
+          <FlatList 
+            ref={listRef}
+            style={{ paddingTop: 20, marginHorizontal: -20, }} 
+            showsHorizontalScrollIndicator={false} 
+            horizontal 
+            contentContainerStyle={{paddingHorizontal: 20,}} 
+            data={menuList}
+            renderItem={ ({item, index}) => (
+                  <MenuItem 
+                    iconPack="MaterialIcons" 
+                    iconName={item.icon}
+                    active={index === selected}
+                    iconSize={18} 
+                    text={item.title}
+                    color="white"
+                    onPress={() => selectMenu(index)}
+                    />
+              )}
+            ListFooterComponent={ ({item, index}) => (
+              <View style={{ borderLeftColor: 'rgb(149,165, 157)', borderLeftWidth: 1, }}> 
+                <MenuItem 
+                  IconPack="MaterialIcons" 
+                  iconName="settings"
+                  iconSize={18}
+                  text="Edit"
+                  />
+              </View>
+            )}
+          />
+ 
+ 
+
+ 
+      </View>
+
+      <View style={styles.body}>
+        <FlatList 
+          data={selected === 1?DummyData:[]}
+          renderItem={({item, index}) => (<PodcastItem podcastImg={item.podcastImg} podcastTitle={item.podcastTitle} date={item.date} duration={item.duration} />)}
+          ListEmptyComponent={() => selected === 0?<EmptyList icon={EmptyListMessages.inProgress.icon} title={EmptyListMessages.inProgress.title} message={EmptyListMessages.inProgress.message}/>:selected === 2?<EmptyList icon={EmptyListMessages.downloads.icon} title={EmptyListMessages.downloads.title} message={EmptyListMessages.downloads.message}/>:selected === 3?<EmptyList icon={EmptyListMessages.favorites.icon} title={EmptyListMessages.favorites.title} message={EmptyListMessages.favorites.message}/>:<EmptyList icon='ios-information-circle-outline' title='Nothing to see here.' message=''/>}
+          contentContainerStyle={{ flex: 1, width: '100%', }}
+          ItemSeparatorComponent={() => <HorizontalLine />}
+        />
+
+
+
+
+      <TouchableOpacity onPress={onPress} style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: active?'rgb(42, 43, 57)':'transparent', padding: 10, borderRadius: 5,}}>
+        <MaterialIcons name={iconName} size={text} color={active?color:'rgb(158, 158, 164)'} />
+        <Text style={{ marginLeft: 10, marginRight: 5, fontSize: 20, fontWeight: '400', color:active?color:'rgb(158, 158, 164)', }}>{text}</Text>
+      </TouchableOpacity>
+
+  </>
